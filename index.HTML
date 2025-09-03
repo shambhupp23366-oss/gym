@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EVOLISTION FITNESS | Transform Your Body</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --bg-soft:#0f1520;
+      --card:#121928;
+      --text:#e8eefc;
+      --muted:#93a4c7;
+      --brand:#31ff8a; /* neon green */
+      --brand-2:#5ab9ff;
+      --danger:#ff4d4f;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; color:var(--text); background:
+        radial-gradient(1200px 600px at 120% -10%, rgba(49,255,138,.12), transparent 60%),
+        radial-gradient(900px 500px at -20% 10%, rgba(90,185,255,.10), transparent 60%),
+        var(--bg);
+      line-height:1.6; overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:rgba(11,15,20,.6); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:12px 18px}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px}
+    .logo-mark{width:38px; height:38px; border-radius:12px; background: conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2), var(--brand)); box-shadow:0 0 24px rgba(49,255,138,.35)}
+    .logo span{font-size:1.1rem}
+    .nav a{opacity:.9}
+    .menu{display:flex; gap:18px; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; background:linear-gradient(135deg,var(--brand) 0%, #a3ffc7 100%); color:#06270f; font-weight:700; box-shadow:0 6px 18px rgba(49,255,138,.25); border:0; cursor:pointer}
+    .btn-ghost{background:rgba(255,255,255,.06); color:var(--text); border:1px solid rgba(255,255,255,.08)}
+
+    /* HERO */
+    .hero{position:relative; padding:110px 18px 70px}
+    .container{max-width:1200px; margin:auto}
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center}
+    .eyebrow{display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border:1px solid rgba(255,255,255,.12); border-radius:999px; font-size:.85rem; color:var(--muted)}
+    h1{font-size:clamp(2.2rem, 4.2vw, 4rem); line-height:1.1; margin:.6rem 0 1rem; text-wrap:balance}
+    .lead{font-size:1.05rem; color:#c9d6f1; max-width:60ch}
+    .hero-cta{display:flex; gap:14px; margin-top:20px; flex-wrap:wrap}
+    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px}
+    .stat{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--shadow)}
+    .stat b{font-size:1.6rem}
+    .hero-img{position:relative}
+    .hero-img img{width:100%; border-radius:24px; border:1px solid rgba(255,255,255,.1); box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    .glass{position:absolute; right:-12px; bottom:-12px; background:rgba(15,21,32,.8); border:1px solid rgba(255,255,255,.08); padding:14px 18px; border-radius:16px; box-shadow:var(--shadow)}
+
+    /* SECTIONS */
+    section{padding:70px 18px}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:24px}
+    .section-title h2{margin:0; font-size:clamp(1.6rem,3.2vw,2.2rem)}
+    .sub{color:var(--muted)}
+
+    .grid{display:grid; gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:.4rem 0 .2rem}
+    .tag{display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:.78rem}
+
+    /* CLASSES */
+    .class{display:grid; grid-template-columns: 120px 1fr; gap:16px; align-items:center}
+    .class img{width:120px; height:80px; object-fit:cover; border-radius:12px}
+
+    /* TRAINERS */
+    .trainer{display:flex; gap:14px; align-items:center}
+    .trainer img{width:66px; height:66px; border-radius:14px; object-fit:cover}
+
+    /* PRICING */
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .price-card{background:linear-gradient(180deg, rgba(49,255,138,.08), rgba(255,255,255,.02)); border:1px solid rgba(49,255,138,.25)}
+    .price{font-size:2.2rem; font-weight:800}
+    .included{margin:12px 0; color:#cfe7d8}
+    .included li{margin:8px 0}
+
+    /* SCHEDULE */
+    table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:var(--radius)}
+    th,td{padding:14px 16px; border-bottom:1px solid rgba(255,255,255,.06)}
+    thead th{background:rgba(255,255,255,.06); text-align:left}
+    tbody tr:hover{background:rgba(255,255,255,.03)}
+
+    /* TESTIMONIALS */
+    .quote{font-size:1rem; color:#dbe8ff}
+
+    /* CTA */
+    .cta{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; background:linear-gradient(135deg, rgba(49,255,138,.12), rgba(90,185,255,.10)); border:1px solid rgba(255,255,255,.12); border-radius:26px; padding:24px}
+    .cta form{display:grid; gap:12px}
+    .field{display:grid}
+    .field input, .field select, .field textarea{background:#0e1522; border:1px solid rgba(255,255,255,.14); color:var(--text); padding:12px 14px; border-radius:12px; outline:0}
+    .field small{color:var(--muted)}
+    .helper{font-size:.86rem; color:#ccead7}
+
+    /* FOOTER */
+    footer{padding:40px 18px; background:#0a0f17; border-top:1px solid rgba(255,255,255,.08)}
+    .footer-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:18px; max-width:1200px; margin:auto}
+    .socials a{display:inline-flex; width:38px; height:38px; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.12); border-radius:14px; margin-right:8px}
+
+    /* MISC */
+    .floating-wa{position:fixed; right:16px; bottom:16px; width:56px; height:56px; display:grid; place-items:center; border-radius:50%; background:#25D366; box-shadow:0 14px 24px rgba(37, 211, 102, .35)}
+
+    /* MOBILE */
+    @media (max-width: 900px){
+      .hero-grid, .cta{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .class{grid-template-columns: 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .nav-inner{flex-wrap:wrap; gap:10px}
+      .menu{width:100%; justify-content:space-between}
+    }
+    .logo{
+        width: 45px;
+        height: 45px;
+        border-radius: 25%;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="EVOLISTION FITNESS Home">
+        <span class="logo-mark" aria-hidden="true"><img src="logo1.png" class="logo"></span>
+        <span>EVOLUTION <span style="color:var(--brand)">FITNESS</span></span>
+      </a>
+      <div class="menu">
+        <a href="#classes">Classes</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-phone"></i> Contact</a>
+        <a href="#join" class="btn"><i class="fa-solid fa-bolt"></i> Join Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><i class="fa-solid fa-dumbbell"></i> Welcome to EVOLUTION FITNESS</span>
+        <h1>Transform your body. Elevate your mind. <span style="color:var(--brand)">Start today.</span></h1>
+        <p class="lead">State-of-the-art equipment, science-backed coaching, and electrifying energy—your new fitness home is here. Get stronger, leaner, and more confident with programs built for <b>beginners to athletes</b>.</p>
+        <div class="hero-cta">
+          <a href="#join" class="btn"><i class="fa-solid fa-ticket"></i> Get a 3‑Day Free Pass</a>
+          <a href="#tour" class="btn btn-ghost"><i class="fa-regular fa-circle-play"></i> Take a Virtual Tour</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>1000+</b><div>Happy Members</div></div>
+          <div class="stat"><b>50+</b><div>Classes / Week</div></div>
+          <div class="stat"><b>7 AM – 10 PM</b><div>Open Daily</div></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Athlete lifting weights inside a neon-lit gym"/>
+        <div class="glass"><i class="fa-solid fa-shield-heart"></i> Certified Trainers • Sanitized Facility</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CLASSES -->
+  <section id="classes">
+    <div class="container">
+      <div class="section-title">
+        <h2>Popular <span style="color:var(--brand)">Classes</span></h2>
+        <span class="sub">Fight boredom, build consistency.</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="card class">
+          <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1200&auto=format&fit=crop" alt="HIIT class"/>
+          <div>
+            <h3>HIIT & Conditioning</h3>
+            <p>Heart‑pounding circuits that torch fat and boost endurance in just 30 minutes.</p>
+            <span class="tag">All Levels</span>
+          </div>
+        </div>
+        <div class="card class">
+          <img src="https://images.unsplash.com/photo-1554310603-d39d4303374e?q=80&w=1200&auto=format&fit=crop" alt="Strength training"/>
+          <div>
+            <h3>Strength & Hypertrophy</h3>
+            <p>Progressive overload programs focused on muscle gain, posture, and power.</p>
+            <span class="tag">Intermediate</span>
+          </div>
+        </div>
+        <div class="card class">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop" alt="Yoga class"/>
+          <div>
+            <h3>Mobility & Yoga</h3>
+            <p>Breathe, stretch, and recover. Improve flexibility and reduce stress.</p>
+            <span class="tag">Beginner Friendly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINERS -->
+  <section id="trainers">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet Our <span style="color:var(--brand)">Coaches</span></h2>
+        <span class="sub">NSCA • ACE • ISSA Certified</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="trainer">
+            <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=800&auto=format&fit=crop" alt="Coach A"/>
+            <div>
+              <h3>Arjun Kumar</h3>
+              <span class="tag">Strength & Power</span>
+            </div>
+          </div>
+          <p>Squat & deadlift specialist. Builds bulletproof technique and serious strength.</p>
+        </div>
+        <div class="card">
+          <div class="trainer">
+            <img src="https://images.unsplash.com/photo-1554386690-236a5cc6e2ae?q=80&w=800&auto=format&fit=crop" alt="Coach B"/>
+            <div>
+              <h3>Neha Singh</h3>
+              <span class="tag">Fat Loss & HIIT</span>
+            </div>
+          </div>
+          <p>High energy sessions and sustainable nutrition guidance tailored to your goals.</p>
+        </div>
+        <div class="card">
+          <div class="trainer">
+            <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=800&auto=format&fit=crop" alt="Coach C"/>
+            <div>
+              <h3>Rahul Verma</h3>
+              <span class="tag">Mobility & Rehab</span>
+            </div>
+          </div>
+          <p>Focus on movement quality, injury prevention, and long‑term performance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simple <span style="color:var(--brand)">Pricing</span></h2>
+        <span class="sub">No hidden fees • Cancel anytime</span>
+      </div>
+      <div class="pricing">
+        <div class="card">
+          <h3>Starter</h3>
+          <div class="price">₹999<span style="font-size:1rem">/mo</span></div>
+          <ul class="included">
+            <li><i class="fa-regular fa-circle-check"></i> Gym Floor Access</li>
+            <li><i class="fa-regular fa-circle-check"></i> 2 Group Classes / week</li>
+            <li><i class="fa-regular fa-circle-check"></i> Locker & Shower</li>
+          </ul>
+          <a href="#join" class="btn btn-ghost">Choose Starter</a>
+        </div>
+        <div class="card price-card">
+          <h3>Pro</h3>
+          <div class="price">₹1,699<span style="font-size:1rem">/mo</span></div>
+          <ul class="included">
+            <li><i class="fa-regular fa-circle-check"></i> Unlimited Classes</li>
+            <li><i class="fa-regular fa-circle-check"></i> 1 PT Session / month</li>
+            <li><i class="fa-regular fa-circle-check"></i> Body Composition Scan</li>
+          </ul>
+          <a href="#join" class="btn">Choose Pro</a>
+        </div>
+        <div class="card">
+          <h3>Elite</h3>
+          <div class="price">₹2,999<span style="font-size:1rem">/mo</span></div>
+          <ul class="included">
+            <li><i class="fa-regular fa-circle-check"></i> 4 PT Sessions / month</li>
+            <li><i class="fa-regular fa-circle-check"></i> Custom Nutrition Plan</li>
+            <li><i class="fa-regular fa-circle-check"></i> Priority Support</li>
+          </ul>
+          <a href="#join" class="btn btn-ghost">Choose Elite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <div class="container">
+      <div class="section-title">
+        <h2>Weekly <span style="color:var(--brand)">Schedule</span></h2>
+        <span class="sub">Book via WhatsApp or at the desk</span>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>7:00 AM</td>
+              <td>HIIT</td><td>Yoga</td><td>Strength</td><td>HIIT</td><td>Mobility</td><td>Bootcamp</td>
+            </tr>
+            <tr>
+              <td>6:00 PM</td>
+              <td>Strength</td><td>HIIT</td><td>Mobility</td><td>Strength</td><td>Yoga</td><td>Cross‑Training</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="tour">
+    <div class="container">
+      <div class="section-title">
+        <h2>Members <span style="color:var(--brand)">Love Us</span></h2>
+        <span class="sub">4.9 ★ average rating</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <p class="quote">“Best vibe in town! Trainers actually correct your form and push you safely.”</p>
+          <span class="tag">— Priya</span>
+        </div>
+        <div class="card">
+          <p class="quote">“Lost 8 kg in 12 weeks. Classes are fun and never repetitive.”</p>
+          <span class="tag">— Rohan</span>
+        </div>
+        <div class="card">
+          <p class="quote">“Clean, modern, and the equipment is top‑notch. Worth every rupee.”</p>
+          <span class="tag">— Meera</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA & CONTACT -->
+  <section id="join">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Grab Your <span style="color:var(--brand)">3‑Day Free Pass</span></h2>
+          <p class="helper">Drop your details and our team will message you in minutes. No obligations.</p>
+          <ul class="included">
+            <li><i class="fa-regular fa-circle-check"></i> Full access to gym & classes</li>
+            <li><i class="fa-regular fa-circle-check"></i> Free fitness assessment</li>
+            <li><i class="fa-regular fa-circle-check"></i> Nutrition kickstart guide</li>
+          </ul>
+        </div>
+        <form id="leadForm" class="card" novalidate>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="phone">WhatsApp Number</label>
+            <input id="phone" name="phone" placeholder="+91 9XXXXXXXXX" pattern="^[+]?\d[\d\s-]{8,}$" required>
+            <small>We'll confirm your free pass by WhatsApp.</small>
+          </div>
+          <div class="field">
+            <label for="plan">Interested Plan</label>
+            <select id="plan" name="plan">
+              <option>Starter (₹999/mo)</option>
+              <option>Pro (₹1,699/mo)</option>
+              <option>Elite (₹2,999/mo)</option>
+            </select>
+          </div>
+          <button class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Get Free Pass</button>
+          <div id="formMsg" class="helper" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Visit <span style="color:var(--brand)">Us</span></h2>
+        <span class="sub">EVOLISTION FITNESS • Your City, India</span>
+      </div>
+      <div class="grid" style="grid-template-columns:1.2fr .8fr; gap:18px">
+        <div class="card" style="overflow:hidden">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d874.6798592609309!2d77.0277656877067!3d28.72792955658146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d075d17d36141%3A0x4cef4c14c5809dbd!2sBHARAT%20%26%20GAUTAM%20ASSOCIATES!5e0!3m2!1sen!2sin!4v1756804257715!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="card">
+          <h3>Contact</h3>
+          <p><i class="fa-solid fa-location-dot"></i> EVOLISTION FITNESS SHIV VIHAR KARALA</p>
+          <p><i class="fa-solid fa-phone"></i> <a href="tel:+919871666496">+91 9871666496</a></p>
+          <p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/919871666496" target="_blank" rel="noopener">WhatsApp Us</a></p>
+          <p><i class="fa-regular fa-clock"></i> Mon–Sat: 6:00 AM to 11:00AM & 5:00PM to 10:00 PM <br>Sunday <span>Close</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><span class="logo-mark"></span><span>EVOLISTION FITNESS</span></div>
+        <p style="color:var(--muted)">Train smart. Recover better. Evolve faster.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#classes">Classes</a><br/>
+        <a href="#trainers">Coaches</a><br/>
+        <a href="#pricing">Pricing</a><br/>
+        <a href="#schedule">Schedule</a>
+      </div>
+      <div>
+        <h4>Membership</h4>
+        <a href="#join">Free Pass</a><br/>
+        <a href="#pricing">Plans</a><br/>
+        <a href="#contact">Visit Us</a>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <a href="#">Terms</a><br/>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <p style="text-align:center; color:var(--muted); margin-top:24px">© <span id="year"></span> EVOLISTION FITNESS. All rights reserved.</p>
+  </footer>
+
+  <a class="floating-wa" href="https://wa.me/919871666496" target="_blank" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" style="font-size:26px; color:white"></i></a>
+
+  <script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lead form - basic client-side validation and simulated submit
+    const form = document.getElementById('leadForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const msg = document.getElementById('formMsg');
+      if(!name){ msg.textContent = 'Please enter your name.'; msg.style.color = '#ffd166'; return; }
+      if(!form.phone.checkValidity()){
+        msg.textContent = 'Please enter a valid phone/WhatsApp number.'; msg.style.color = '#ffd166'; return; }
+      msg.style.color = '#8cffb5';
+      msg.textContent = 'Thank you, ' + name + '! Your free pass is reserved. We will message you on WhatsApp shortly.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
